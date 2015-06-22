@@ -2,7 +2,7 @@
  * stdio_fast.h
  *
  * Created: 22/06/2015 11:29:21
- *  Author: paul.qureshi
+ *  Author: mojo-chan
  */ 
 
 
@@ -14,7 +14,8 @@
 #define STDIO_USART_BSEL		0
 #define STDIO_USART_BSCALE		0
 #define STDIO_USART_CLK2X		USART_CLK2X_bm
-#define STDIO_NEWLINE_RN
+#define STDIO_NEWLINE_R
+#define STDIO_NEWLINE_N
 
 
 extern void STDIO_init(void);
@@ -64,9 +65,11 @@ inline int puts_P(const char * __str)
 	while(!(STDIO_USART.STATUS & USART_DREIF_bm));
 	STDIO_USART.DATA = '\r';
 #endif
+#ifdef STDIO_NEWLINE_N
 	while(!(STDIO_USART.STATUS & USART_DREIF_bm));
 	STDIO_USART.DATA = '\n';
-	
+#endif
+
 	return 1;
 }
 
@@ -87,9 +90,11 @@ inline int puts(const char * __str)
 	while(!(STDIO_USART.STATUS & USART_DREIF_bm));
 	STDIO_USART.DATA = '\r';
 #endif
+#ifdef STDIO_NEWLINE_N
 	while(!(STDIO_USART.STATUS & USART_DREIF_bm));
 	STDIO_USART.DATA = '\n';
-	
+#endif
+
 	return 1;
 }
 
