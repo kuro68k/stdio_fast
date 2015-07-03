@@ -10,6 +10,26 @@
 #define STDIO_FAST_H_
 
 
+
+#define PRINTF_MIN 1
+#define PRINTF_STD 2
+#define PRINTF_FLT 3
+
+// remember to set linker options too, see avr-libc's vfprintf() documentation
+#ifndef PRINTF_LEVEL
+#define PRINTF_LEVEL PRINTF_FLT
+#endif
+
+#if PRINTF_LEVEL == PRINTF_MIN || PRINTF_LEVEL == PRINTF_STD \
+    || PRINTF_LEVEL == PRINTF_FLT
+/* OK */
+#else
+#error "Not a known printf level."
+#endif
+
+
+
+
 #define STDIO_USART				USARTC0
 #define STDIO_USART_BSEL		0
 #define STDIO_USART_BSCALE		0

@@ -7,6 +7,9 @@ printf_P(PSTR("test"));     ->      604 cycles
 puts_P(PSTR("test"));       ->      246 cycles
 usart_write(PSTR("test"));  ->      123 cycles
 
+printf("test %u", 42);		->		1525 cycles (avr-libc, no floats)
+printf("test %u", 42);		->		1082 cycles (fast version, no floats)
+
 The included functions set up the AVR's USART and redirect stdio.h functions to use it. They also replace some of the functions (putchar, getchar, puts and puts_P) with faster versions which use inline code.
 
 Note that puts() and puts_P() append a newline character to every string. This behaviour can be configured in stdio_fast.h.
