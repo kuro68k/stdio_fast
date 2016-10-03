@@ -70,7 +70,9 @@ static inline int __getchar(void)
 /**************************************************************************************************
 * puts_P() replacement
 */
-inline int puts_P(const char * __str)
+#undef	puts_P
+#define puts_P	__puts_P
+static inline int __puts_P(const char * __str)
 {
 	const __flash char * s = __str;
 	
@@ -81,11 +83,11 @@ inline int puts_P(const char * __str)
 	}
 
 	// newline
-#ifdef STDIO_NEWLINE_RN
+#if (defined STDIO_NEWLINE_RN || defined STDIO_NEWLINE_R)
 	while(!(STDIO_USART.STATUS & USART_DREIF_bm));
 	STDIO_USART.DATA = '\r';
 #endif
-#ifdef STDIO_NEWLINE_N
+#if (defined STDIO_NEWLINE_RN || defined STDIO_NEWLINE_N)
 	while(!(STDIO_USART.STATUS & USART_DREIF_bm));
 	STDIO_USART.DATA = '\n';
 #endif
@@ -97,7 +99,9 @@ inline int puts_P(const char * __str)
 /**************************************************************************************************
 * puts() replacement
 */
-inline int puts(const char * __str)
+#undef	puts
+#define puts	__puts
+static inline int puts(const char * __str)
 {
 	while (*__str != '\0')
 	{
@@ -106,11 +110,11 @@ inline int puts(const char * __str)
 	}
 
 	// newline
-#ifdef STDIO_NEWLINE_RN
+#if (defined STDIO_NEWLINE_RN || defined STDIO_NEWLINE_R)
 	while(!(STDIO_USART.STATUS & USART_DREIF_bm));
 	STDIO_USART.DATA = '\r';
 #endif
-#ifdef STDIO_NEWLINE_N
+#if (defined STDIO_NEWLINE_RN || defined STDIO_NEWLINE_N)
 	while(!(STDIO_USART.STATUS & USART_DREIF_bm));
 	STDIO_USART.DATA = '\n';
 #endif

@@ -14,4 +14,4 @@ The included functions set up the AVR's USART and redirect stdio.h functions to 
 
 Note that puts() and puts_P() append a newline character to every string. This behaviour can be configured in stdio_fast.h.
 
-To use, simple delete main(), include stdio_fast.c and stdio_fast.h in your project and set the baud rate. The current USART code is written for XMEGA devices, trivial modifications are required for other members of the AVR family.
+To use, simply delete main(), include stdio_fast.c and stdio_fast.h in your project and set the baud rate. The current USART code is written for XMEGA devices, trivial modifications are required for other members of the AVR family.
