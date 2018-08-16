@@ -2,7 +2,7 @@
  * stdio_fast.c
  *
  * Created: 22/06/2015 11:26:17
- *  Author: mojo-chan
+ *  Author: kuro68k
  */ 
 
 

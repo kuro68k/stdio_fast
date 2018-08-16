@@ -2,7 +2,7 @@
  * stdio_fast.h
  *
  * Created: 22/06/2015 11:29:21
- *  Author: mojo-chan
+ *  Author: kuro68k
  */ 
 
 
